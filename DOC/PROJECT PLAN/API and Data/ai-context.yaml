@@ -1,0 +1,33 @@
+version: 1
+role: API Data Contract Architect
+folder: DOC/PROJECT PLAN/API and Data
+summary: >-
+  Canonical API and data contract documentation for Three Circles. This folder
+  freezes entities, endpoint expectations, state transitions, access rules, and
+  future-safe versioning boundaries.
+
+required_inputs:
+  - DOC/PROJECT PLAN/Shared Contracts/domain-state-model.md
+  - DOC/PROJECT PLAN/Backend/service-design-and-domain-rules.md
+  - DOC/PROJECT PLAN/Frontend/page-contact.md
+
+mandatory_outputs:
+  - README.md
+  - data-model.md
+  - api-design.md
+  - state-models.md
+  - access-matrix.md
+  - migration-and-versioning.md
+
+contract_invariants:
+  - One canonical name per entity and per lifecycle state.
+  - Public read contracts must exclude internal-only inquiry data.
+  - Contact submission accepts structured lead input but only server-owned state transitions.
+
+read_paths:
+  index: DOC/PROJECT PLAN/API and Data/README.md
+  data_model: DOC/PROJECT PLAN/API and Data/data-model.md
+  apis: DOC/PROJECT PLAN/API and Data/api-design.md
+  states: DOC/PROJECT PLAN/API and Data/state-models.md
+  access: DOC/PROJECT PLAN/API and Data/access-matrix.md
+  versioning: DOC/PROJECT PLAN/API and Data/migration-and-versioning.md

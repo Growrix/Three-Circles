@@ -1,0 +1,32 @@
+version: 1
+role: DevOps Reliability Release Planner
+folder: DOC/PROJECT PLAN/DevOps
+summary: >-
+  Operational planning for deploying, observing, backing up, and releasing the
+  Three Circles website and its supporting services.
+
+required_inputs:
+  - DOC/PROJECT PLAN/Backend/backend-architecture.md
+  - DOC/PROJECT PLAN/Security/security-and-operations.md
+  - DOC/PROJECT PLAN/API and Data/api-design.md
+
+mandatory_outputs:
+  - README.md
+  - deployment-and-environments.md
+  - ci-cd-and-release-strategy.md
+  - observability-and-reliability.md
+  - backup-and-disaster-recovery.md
+  - platform-governance-and-controls.md
+
+ops_invariants:
+  - Production must preserve public read performance and inquiry durability.
+  - Environment secrets and content operations access must be isolated.
+  - Rollback paths are required for both application and content-impacting releases.
+
+read_paths:
+  index: DOC/PROJECT PLAN/DevOps/README.md
+  environments: DOC/PROJECT PLAN/DevOps/deployment-and-environments.md
+  releases: DOC/PROJECT PLAN/DevOps/ci-cd-and-release-strategy.md
+  observability: DOC/PROJECT PLAN/DevOps/observability-and-reliability.md
+  recovery: DOC/PROJECT PLAN/DevOps/backup-and-disaster-recovery.md
+  governance: DOC/PROJECT PLAN/DevOps/platform-governance-and-controls.md

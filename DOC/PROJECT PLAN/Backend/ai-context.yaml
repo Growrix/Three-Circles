@@ -1,0 +1,37 @@
+version: 1
+role: Backend System Planner
+folder: DOC/PROJECT PLAN/Backend
+summary: >-
+  Backend planning for Three Circles. This folder defines the server-side
+  services, persistence responsibilities, content operations assumptions,
+  notifications, storage, and reliability expectations that support the public
+  site and lead workflow.
+
+required_inputs:
+  - DOC/PROJECT PLAN/Shared Contracts/ai-context.yaml
+  - DOC/PROJECT PLAN/Shared Contracts/domain-state-model.md
+  - DOC/PROJECT PLAN/Frontend/ai-context.yaml
+
+mandatory_outputs:
+  - README.md
+  - backend-architecture.md
+  - service-design-and-domain-rules.md
+  - auth-authorization-and-rls.md
+  - queue-payments-and-integrations.md
+  - file-delivery-and-storage.md
+  - backend-observability-and-reliability.md
+
+backend_invariants:
+  - Contact submission is the confirmed public write workflow.
+  - Service offering, portfolio project, and lead inquiry remain canonical entity names.
+  - Assumed admin tooling must be isolated from public delivery concerns.
+  - External integrations must fail safely without breaking core page rendering.
+
+read_paths:
+  index: DOC/PROJECT PLAN/Backend/README.md
+  architecture: DOC/PROJECT PLAN/Backend/backend-architecture.md
+  domain_rules: DOC/PROJECT PLAN/Backend/service-design-and-domain-rules.md
+  auth: DOC/PROJECT PLAN/Backend/auth-authorization-and-rls.md
+  integrations: DOC/PROJECT PLAN/Backend/queue-payments-and-integrations.md
+  storage: DOC/PROJECT PLAN/Backend/file-delivery-and-storage.md
+  reliability: DOC/PROJECT PLAN/Backend/backend-observability-and-reliability.md

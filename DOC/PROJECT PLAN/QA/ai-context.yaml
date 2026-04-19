@@ -1,0 +1,35 @@
+version: 1
+role: QA Test Release Governor
+folder: DOC/PROJECT PLAN/QA
+summary: >-
+  Quality planning for the Three Circles website. This folder defines test
+  strategy, contract verification, release gates, and post-deploy validation
+  for the public experience and supporting operational flows.
+
+required_inputs:
+  - DOC/PROJECT PLAN/Frontend/README.md
+  - DOC/PROJECT PLAN/Backend/README.md
+  - DOC/PROJECT PLAN/API and Data/README.md
+  - DOC/PROJECT PLAN/Security/README.md
+  - DOC/PROJECT PLAN/DevOps/README.md
+
+mandatory_outputs:
+  - README.md
+  - testing-strategy.md
+  - qa-and-release-gates.md
+  - contract-test-matrix.md
+  - end-to-end-scenarios.md
+  - post-deploy-verification.md
+
+quality_invariants:
+  - Public page quality, contact flow durability, and content integrity are release-critical.
+  - Contract changes require matching test and documentation updates.
+  - Accessibility and responsive behavior are first-class release concerns.
+
+read_paths:
+  index: DOC/PROJECT PLAN/QA/README.md
+  strategy: DOC/PROJECT PLAN/QA/testing-strategy.md
+  release_gates: DOC/PROJECT PLAN/QA/qa-and-release-gates.md
+  contracts: DOC/PROJECT PLAN/QA/contract-test-matrix.md
+  e2e: DOC/PROJECT PLAN/QA/end-to-end-scenarios.md
+  post_deploy: DOC/PROJECT PLAN/QA/post-deploy-verification.md

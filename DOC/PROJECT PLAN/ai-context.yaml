@@ -1,0 +1,89 @@
+version: 1
+project:
+  name: Three Circles
+  type: Project-specific documentation plan
+  business_type: Interior design
+  summary: >-
+    Implementation-ready documentation set for the Three Circles website,
+    generated from the master business plan and universal orchestration rules.
+
+canonical_entrypoints:
+  ai: DOC/PROJECT PLAN/ai-context.yaml
+  human: DOC/PROJECT PLAN/README.md
+
+source_of_truth:
+  required_reads:
+    - DOC/Universal/GPT ROLES/ai-context.yaml
+    - DOC/Universal/GPT ROLES/Documentation_Workflow_Playbook.md
+    - DOC/Universal/Execution Constitution.md
+    - DOC/MASTER PLAN/Plan.md
+
+confirmed_requirements:
+  business:
+    - residential interior design
+    - commercial interior design
+    - space planning
+    - furniture selection
+    - color consultation
+    - project management
+  audiences:
+    - homeowners
+    - business owners
+    - real estate developers
+    - architects
+  brand:
+    personality:
+      - modern
+      - sophisticated
+      - approachable
+      - detail-oriented
+      - collaborative
+    colors:
+      red: '#f90000'
+      black: '#231f20'
+      white: '#ffffff'
+  required_public_pages:
+    - Home
+    - About Us
+    - Services
+    - Portfolio
+    - Contact Us
+
+planning_constraints:
+  - Do not invent business requirements as facts beyond DOC/MASTER PLAN/Plan.md.
+  - Treat admin tooling, integrations, and operational workflows as explicit assumptions until approved.
+  - Keep frontend, backend, API/data, security, DevOps, and QA docs aligned with shared contracts.
+
+project_structure:
+  shared_contracts: DOC/PROJECT PLAN/Shared Contracts
+  frontend: DOC/PROJECT PLAN/Frontend
+  backend: DOC/PROJECT PLAN/Backend
+  api_and_data: DOC/PROJECT PLAN/API and Data
+  security: DOC/PROJECT PLAN/Security
+  devops: DOC/PROJECT PLAN/DevOps
+  qa: DOC/PROJECT PLAN/QA
+
+execution_sequence:
+  - Shared Contracts
+  - Frontend
+  - Backend
+  - API and Data
+  - Security
+  - DevOps
+  - QA
+  - Refresh project root docs
+
+assumptions_to_validate:
+  - A lightweight content management surface is needed to maintain services, portfolio items, and contact details without code edits.
+  - The Contact Us page should support structured lead capture and consultation requests.
+  - Portfolio images and project details require managed storage and optimization.
+  - Email notification is the minimum outbound integration for contact submissions.
+
+task_routing:
+  shared_contracts: DOC/PROJECT PLAN/Shared Contracts/ai-context.yaml
+  frontend_planning: DOC/PROJECT PLAN/Frontend/ai-context.yaml
+  backend_planning: DOC/PROJECT PLAN/Backend/ai-context.yaml
+  api_and_data: DOC/PROJECT PLAN/API and Data/ai-context.yaml
+  security_planning: DOC/PROJECT PLAN/Security/ai-context.yaml
+  devops_planning: DOC/PROJECT PLAN/DevOps/ai-context.yaml
+  qa_planning: DOC/PROJECT PLAN/QA/ai-context.yaml

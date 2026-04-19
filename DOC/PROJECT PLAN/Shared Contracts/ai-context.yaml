@@ -1,0 +1,42 @@
+version: 1
+role: Fullstack Contract Orchestrator
+folder: DOC/PROJECT PLAN/Shared Contracts
+summary: >-
+  Shared contract blueprint for the Three Circles website. This folder locks the
+  core scope, surfaces, routes, entities, lifecycle states, and implementation
+  sequencing that all downstream role folders must consume.
+
+required_inputs:
+  - DOC/PROJECT PLAN/ai-context.yaml
+  - DOC/MASTER PLAN/Plan.md
+  - DOC/Universal/GPT ROLES/Fullstack_Contract_Orchestrator.md
+
+mandatory_outputs:
+  - README.md
+  - product-requirements.md
+  - system-architecture.md
+  - module-boundaries.md
+  - route-and-surface-map.md
+  - domain-state-model.md
+  - implementation-sequence.md
+
+shared_invariants:
+  - Public site pages are mandatory and form the MVP surface.
+  - Cross-role contracts must prefer confirmed business requirements over convenience assumptions.
+  - Frontend may not invent server-owned lifecycle states or permission behavior.
+  - Backend, API/data, security, DevOps, and QA must align to the route and entity definitions here.
+
+project_decisions:
+  public_site_required: true
+  customer_authenticated_surface_required: false
+  admin_surface_assumed_for_content_operations: true
+  primary_conversion_surface: Contact Us
+  portfolio_management_required: assumed
+
+read_paths:
+  root_context: DOC/PROJECT PLAN/ai-context.yaml
+  scope: DOC/PROJECT PLAN/Shared Contracts/product-requirements.md
+  structure: DOC/PROJECT PLAN/Shared Contracts/system-architecture.md
+  routes: DOC/PROJECT PLAN/Shared Contracts/route-and-surface-map.md
+  entities: DOC/PROJECT PLAN/Shared Contracts/domain-state-model.md
+  build_order: DOC/PROJECT PLAN/Shared Contracts/implementation-sequence.md

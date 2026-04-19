@@ -1,0 +1,40 @@
+version: 1
+role: Frontend UIUX Generator
+folder: DOC/PROJECT PLAN/Frontend
+summary: >-
+  Frontend planning for the Three Circles public website. This folder defines
+  page architecture, visual system, responsive behavior, and interaction rules
+  while consuming the shared contracts as the source of truth.
+
+required_inputs:
+  - DOC/PROJECT PLAN/ai-context.yaml
+  - DOC/PROJECT PLAN/Shared Contracts/ai-context.yaml
+  - DOC/PROJECT PLAN/Shared Contracts/route-and-surface-map.md
+  - DOC/PROJECT PLAN/Shared Contracts/domain-state-model.md
+
+mandatory_outputs:
+  - README.md
+  - frontend-architecture.md
+  - component-and-styling-standards.md
+  - page-home.md
+  - page-about.md
+  - page-services.md
+  - page-portfolio.md
+  - page-contact.md
+
+frontend_invariants:
+  - Public page scope must remain Home, About Us, Services, Portfolio, and Contact Us.
+  - Frontend may present but not redefine lead inquiry states or content entity names.
+  - All pages require desktop and mobile behavior with clear empty and failure handling.
+  - Brand expression must use the confirmed red, black, and white palette as the base system.
+
+read_paths:
+  index: DOC/PROJECT PLAN/Frontend/README.md
+  architecture: DOC/PROJECT PLAN/Frontend/frontend-architecture.md
+  styling: DOC/PROJECT PLAN/Frontend/component-and-styling-standards.md
+  pages:
+    - DOC/PROJECT PLAN/Frontend/page-home.md
+    - DOC/PROJECT PLAN/Frontend/page-about.md
+    - DOC/PROJECT PLAN/Frontend/page-services.md
+    - DOC/PROJECT PLAN/Frontend/page-portfolio.md
+    - DOC/PROJECT PLAN/Frontend/page-contact.md

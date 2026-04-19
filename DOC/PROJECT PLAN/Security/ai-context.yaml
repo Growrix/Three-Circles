@@ -1,0 +1,36 @@
+version: 1
+role: Security Compliance Trust Architect
+folder: DOC/PROJECT PLAN/Security
+summary: >-
+  Security and trust planning for Three Circles. This folder defines access
+  boundaries, privacy handling, operational safeguards, abuse prevention, and
+  incident expectations for the website and assumed internal workflows.
+
+required_inputs:
+  - DOC/PROJECT PLAN/Shared Contracts/ai-context.yaml
+  - DOC/PROJECT PLAN/Backend/auth-authorization-and-rls.md
+  - DOC/PROJECT PLAN/API and Data/access-matrix.md
+
+mandatory_outputs:
+  - README.md
+  - auth-and-access-model.md
+  - authorization-and-data-isolation.md
+  - privacy-retention-and-compliance.md
+  - security-and-operations.md
+  - threat-model.md
+  - incident-response.md
+
+security_invariants:
+  - Public pages remain accessible without user authentication.
+  - Inquiry data is sensitive and internal-only after submission.
+  - Internal operator workflows require server-side authorization.
+  - Abuse resistance is mandatory for contact intake and admin access surfaces.
+
+read_paths:
+  index: DOC/PROJECT PLAN/Security/README.md
+  access: DOC/PROJECT PLAN/Security/auth-and-access-model.md
+  isolation: DOC/PROJECT PLAN/Security/authorization-and-data-isolation.md
+  privacy: DOC/PROJECT PLAN/Security/privacy-retention-and-compliance.md
+  operations: DOC/PROJECT PLAN/Security/security-and-operations.md
+  threats: DOC/PROJECT PLAN/Security/threat-model.md
+  incidents: DOC/PROJECT PLAN/Security/incident-response.md
