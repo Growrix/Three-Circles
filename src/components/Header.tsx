@@ -1,83 +1,95 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/contact", label: "Contact" },
-];
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { cn } from "@/lib/cn";
+import { siteData } from "@/lib/site-data";
 
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-50 bg-brand-white/95 backdrop-blur border-b border-muted/30">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-heading text-2xl font-bold tracking-tight text-brand-black">
-          Three<span className="text-brand-red">&nbsp;Circles</span>
+    <header className="sticky top-0 z-50 border-b border-[var(--border-soft)] bg-[color:var(--surface)]/90 backdrop-blur-2xl">
+      <div className="page-shell flex items-center justify-between py-4">
+        <Link href="/" className="brand-lockup">
+          <span className="brand-mark" aria-hidden="true">
+            <span />
+          </span>
+          <span className="font-heading text-2xl font-semibold tracking-tight">
+            Three <span className="accent-text">Circles</span>
+          </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((l) => (
+        <nav className="hidden items-center gap-8 lg:flex">
+          {siteData.navigation.map((link) => (
             <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-brand-black/80 hover:text-brand-red transition-colors"
+              key={link.href}
+              href={link.href}
+              className="nav-link"
+              data-active={pathname === link.href}
             >
-              {l.label}
+              {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="rounded-md bg-brand-red px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-red/90 transition-colors"
-          >
-            Get In Touch
-          </Link>
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="md:hidden p-2"
-          onClick={() => setOpen(!open)}
-        >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
+          <Link href="/contact" className="button-primary">
+            Book a Design Call
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="button-ghost"
+            onClick={() => setOpen((current) => !current)}
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+              {open ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <nav className="md:hidden border-t border-muted/30 bg-brand-white px-6 pb-6 pt-4 space-y-4">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block text-base font-medium text-brand-black/80 hover:text-brand-red transition-colors"
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="block w-full rounded-md bg-brand-red px-5 py-3 text-center text-sm font-semibold text-white hover:bg-brand-red/90 transition-colors"
-          >
-            Get In Touch
-          </Link>
-        </nav>
+        <div className="border-t border-[var(--border-soft)] lg:hidden">
+          <nav className="page-shell py-5">
+            <div className="surface-panel rounded-[var(--radius-lg)] p-4">
+              <div className="space-y-2">
+                {siteData.navigation.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "block rounded-[var(--radius-sm)] px-4 py-3 text-sm font-medium",
+                      pathname === link.href ? "bg-[color:rgba(249,0,0,0.08)] text-[color:var(--text-primary)]" : "text-[color:var(--text-secondary)]",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+              <Link href="/contact" className="button-primary mt-4 flex w-full">
+                Book a Design Call
+              </Link>
+            </div>
+          </nav>
+        </div>
       )}
     </header>
   );

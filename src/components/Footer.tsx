@@ -1,61 +1,62 @@
 import Link from "next/link";
-
-const services = [
-  "Interior Design",
-  "Space Planning",
-  "Furniture Selection",
-  "Color Consultation",
-  "Project Management",
-];
+import { siteData } from "@/lib/site-data";
 
 export function Footer() {
   return (
-    <footer className="bg-brand-black text-brand-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-10 md:grid-cols-3">
-        {/* Brand */}
+    <footer className="site-footer">
+      <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.3fr_0.8fr_0.9fr]">
         <div>
-          <Link href="/" className="font-heading text-2xl font-bold tracking-tight">
-            Three<span className="text-brand-red">&nbsp;Circles</span>
+          <Link href="/" className="brand-lockup">
+            <span className="brand-mark" aria-hidden="true">
+              <span />
+            </span>
+            <span className="font-heading text-2xl font-semibold tracking-tight">
+              Three <span className="accent-text">Circles</span>
+            </span>
           </Link>
-          <p className="mt-4 text-sm text-muted leading-relaxed max-w-xs">
-            Creating innovative and functional interior spaces that reflect your unique style and needs.
+          <p className="mt-5 max-w-sm text-sm leading-7 text-inverse-soft-theme">
+            {siteData.footer.blurb}
+          </p>
+          <p className="mt-5 text-sm font-medium text-inverse-theme">
+            {siteData.brand.responseTime}
           </p>
         </div>
 
-        {/* Services */}
         <div>
-          <h3 className="font-heading text-lg font-semibold mb-4">Services</h3>
+          <h3 className="font-heading text-lg font-semibold">Quick Links</h3>
           <ul className="space-y-2">
-            {services.map((s) => (
-              <li key={s}>
+            {siteData.navigation.map((link) => (
+              <li key={link.href}>
                 <Link
-                  href="/services"
-                  className="text-sm text-muted hover:text-brand-red transition-colors"
+                  href={link.href}
+                  className="text-sm text-inverse-soft-theme hover:text-inverse-theme"
                 >
-                  {s}
+                  {link.label}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Contact */}
         <div>
-          <h3 className="font-heading text-lg font-semibold mb-4">Contact</h3>
-          <address className="not-italic space-y-2 text-sm text-muted">
-            <p>info@threecircles.design</p>
-            <p>+1 (555) 000-0000</p>
+          <h3 className="font-heading text-lg font-semibold">Contact</h3>
+          <address className="mt-4 not-italic space-y-3 text-sm leading-7 text-inverse-soft-theme">
+            <p>{siteData.brand.address[0]}</p>
+            <p>{siteData.brand.address[1]}</p>
+            <p>
+              <a href={`mailto:${siteData.brand.email}`}>{siteData.brand.email}</a>
+            </p>
+            <p>
+              <a href={`tel:${siteData.brand.phone.replace(/[^+\d]/g, "")}`}>{siteData.brand.phone}</a>
+            </p>
           </address>
-          <Link
-            href="/contact"
-            className="mt-6 inline-block rounded-md bg-brand-red px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-red/90 transition-colors"
-          >
+          <Link href="/contact" className="button-primary mt-6">
             Start Your Project
           </Link>
         </div>
       </div>
 
-      <div className="border-t border-white/10 py-6 text-center text-xs text-muted">
+      <div className="border-t border-white/10 py-6 text-center text-xs text-inverse-soft-theme">
         &copy; {new Date().getFullYear()} Three Circles. All rights reserved.
       </div>
     </footer>

@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ThemeScript } from "@/components/ThemeScript";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | Three Circles",
   },
   description:
-    "Three Circles is an interior design firm serving residential and commercial clients with innovative, functional spaces that reflect your unique style.",
+    "Three Circles is an interior design studio creating immersive residential, commercial, and hospitality environments with clear process and strong visual identity.",
 };
 
 export default function RootLayout({
@@ -25,10 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="bg-brand-white text-brand-black font-body antialiased">
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body className="font-body antialiased">
+        <ThemeScript />
         <Header />
-        <main>{children}</main>
+        <main className="overflow-x-clip">{children}</main>
         <Footer />
       </body>
     </html>

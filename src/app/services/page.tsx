@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/Reveal";
+import { SectionIntro } from "@/components/SectionIntro";
+import { siteData } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -7,141 +11,86 @@ export const metadata: Metadata = {
     "Explore Three Circles' interior design services — from full design to space planning, furniture selection, color consultation, and project management.",
 };
 
-const services = [
-  {
-    title: "Interior Design",
-    summary:
-      "Comprehensive design for residential and commercial spaces — concept through completion.",
-    details: [
-      "Full-room and whole-home transformations",
-      "Commercial office, retail, and hospitality interiors",
-      "Custom millwork, lighting, and material specification",
-    ],
-    segments: ["Residential", "Commercial"],
-  },
-  {
-    title: "Space Planning",
-    summary:
-      "Strategic layout design that maximizes function, flow, and visual harmony.",
-    details: [
-      "Floor plan optimization and furniture placement",
-      "Circulation and accessibility analysis",
-      "Open-concept and adaptive reuse planning",
-    ],
-    segments: ["Residential", "Commercial"],
-  },
-  {
-    title: "Furniture Selection",
-    summary:
-      "Curated sourcing of furniture, textiles, and accessories that match your vision and budget.",
-    details: [
-      "Custom and trade-exclusive furniture sourcing",
-      "Budget-aligned procurement strategies",
-      "Delivery and white-glove installation coordination",
-    ],
-    segments: ["Residential", "Commercial"],
-  },
-  {
-    title: "Color Consultation",
-    summary:
-      "Expert palettes that set the right mood, enhance natural light, and create visual cohesion.",
-    details: [
-      "Whole-home or single-room color strategies",
-      "Material and finish pairing guidance",
-      "Light-responsive color testing",
-    ],
-    segments: ["Residential", "Commercial"],
-  },
-  {
-    title: "Project Management",
-    summary:
-      "End-to-end coordination so your project stays on time, on budget, and stress-free.",
-    details: [
-      "Vendor and contractor coordination",
-      "Timeline and milestone tracking",
-      "Budget management and progress reporting",
-    ],
-    segments: ["Residential", "Commercial"],
-  },
-];
-
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-surface-light py-20 md:py-32">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold leading-tight">
-            Our <span className="text-brand-red">Services</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
-            We offer a full spectrum of interior design services for homeowners, business owners,
-            developers, and architects — from initial concept to final installation.
-          </p>
+      <section className="section-space pt-10 md:pt-14">
+        <div className="page-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Services"
+              title="Design support scaled to the complexity of the project."
+              accent="complexity of the project."
+              description="Whether you need full-scope transformation or targeted consulting, our services are structured to keep the creative direction clear and the implementation realistic."
+            />
+          </Reveal>
+          <Reveal delay={1}>
+            <div className="image-frame min-h-[24rem] md:min-h-[34rem]">
+              <Image
+                src={siteData.services[0].image}
+                alt={siteData.services[0].alt}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 48vw, 100vw"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Service Blocks */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6 space-y-16">
-          {services.map((s, i) => (
-            <div
-              key={s.title}
-              className={`flex flex-col gap-10 md:flex-row md:items-start ${
-                i % 2 !== 0 ? "md:flex-row-reverse" : ""
-              }`}
-            >
-              {/* Visual placeholder */}
-              <div className="flex-shrink-0 md:w-2/5">
-                <div className="aspect-[4/3] rounded-xl bg-surface-light" />
-              </div>
-
-              {/* Content */}
-              <div className="flex-1">
-                <h2 className="font-heading text-2xl md:text-3xl font-bold">{s.title}</h2>
-                <p className="mt-4 text-text-secondary leading-relaxed">{s.summary}</p>
-
-                <ul className="mt-6 space-y-2">
-                  {s.details.map((d) => (
-                    <li key={d} className="flex items-start gap-2 text-sm text-text-secondary">
-                      <span className="mt-1 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-red" />
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {s.segments.map((seg) => (
-                    <span
-                      key={seg}
-                      className="rounded-full border border-muted/40 px-3 py-1 text-xs font-medium text-text-secondary"
-                    >
-                      {seg}
-                    </span>
-                  ))}
+      <section className="section-space">
+        <div className="page-shell space-y-8">
+          {siteData.services.map((service, index) => (
+            <Reveal key={service.title} delay={(index % 4) as 0 | 1 | 2 | 3}>
+              <article className="grid gap-6 overflow-hidden rounded-[var(--radius-xl)] border border-[var(--border-soft)] bg-[color:var(--surface)] p-5 shadow-[var(--shadow-soft)] md:p-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+                <div className={index % 2 === 0 ? "order-1" : "order-1 lg:order-2"}>
+                  <div className="image-frame min-h-[20rem] md:min-h-[26rem]">
+                    <Image
+                      src={service.image}
+                      alt={service.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 38vw, 100vw"
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
+
+                <div className={index % 2 === 0 ? "order-2" : "order-2 lg:order-1"}>
+                  <span className="tag">{service.segments.join(" / ")}</span>
+                  <h2 className="mt-5 text-3xl font-semibold md:text-4xl">{service.title}</h2>
+                  <p className="mt-5 max-w-xl text-base leading-7 text-secondary-theme">{service.summary}</p>
+
+                  <ul className="mt-6 space-y-3">
+                    {service.details.map((detail) => (
+                      <li key={detail} className="flex items-start gap-3 text-sm leading-6 text-secondary-theme">
+                        <span className="mt-2 h-2 w-2 rounded-full bg-brand-red" />
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      {/* Engagement Model */}
-      <section className="bg-surface-light py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold">
-            How We <span className="text-brand-red">Work Together</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-text-secondary">
-            Every engagement starts with a conversation. We learn about your space, your goals,
-            and your timeline, then propose a scope and plan that fits.
-          </p>
-          <Link
-            href="/contact"
-            className="mt-10 inline-block rounded-md bg-brand-red px-8 py-3.5 text-base font-semibold text-white hover:bg-brand-red/90 transition-colors"
-          >
-            Discuss Your Project
-          </Link>
+      <section className="section-space pt-0">
+        <div className="page-shell">
+          <Reveal>
+            <div className="surface-inverse radius-xl px-6 py-12 text-center md:px-10">
+              <p className="section-kicker">Engagement Model</p>
+              <h2 className="section-title section-title--compact text-inverse-theme">
+                We start with a real brief, not a generic package menu.
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-inverse-soft-theme">
+                Tell us what needs to change in the space, what constraints matter, and how quickly it needs to move. We will recommend the right engagement path from there.
+              </p>
+              <Link href="/contact" className="button-primary mt-8">
+                Discuss Your Project
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>
