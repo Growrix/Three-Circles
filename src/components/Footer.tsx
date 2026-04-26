@@ -57,7 +57,16 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-6 text-center text-xs text-inverse-soft-theme">
-        &copy; {new Date().getFullYear()} Three Circles. All rights reserved.
+        &copy; {new Date().getFullYear()} Three Circles. All rights reserved. Built & Maintaing by{" "}
+        <a
+          href="https://www.growrixos.com"
+          target="_blank"
+          rel="noreferrer"
+          className="text-inverse-theme hover:text-brand-red"
+        >
+          Growrix OS
+        </a>
+        .
       </div>
     </footer>
   );
